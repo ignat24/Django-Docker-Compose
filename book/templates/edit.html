@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Current info:</h3>
+<h5>First name: {{ user.first_name }}</h5>
+<h5>Middle name: {{ user.middle_name }}</h5>
+<h5>Last name: {{ user.last_name }}</h5>
+<h5>Email: {{ user.email }}</h5>
+<h1>Here we can edit our profile</h1>
+<form action="/edit/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save">
+</form>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+

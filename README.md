@@ -1,2 +1,3 @@
-# Django-Jenkins
-Django project for deploy with Jenkins
+## Django
+
+`python manage.py runserver`

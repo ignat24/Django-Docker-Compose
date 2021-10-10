@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+    <head>
+        <title>Library</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+        
+    </head>
+    <body>
+    <div class="page-header">
+        {% if user.is_authenticated %}
+        <p>Welcome {{ user.first_name }} ! You can <a href="/logout">Log out</a> or <a href="/edit">Edit profile</a></p>
+        {% else %}
+        <p>Welcome, guest. Yo need to <a href="/login">Log in</a> or <a href="/signup">Register</a> </p>
+        {% endif %}
+        <h1><a href="/">Library</a></h1>
+        <h1><a href="{% url 'home' %}">Books</a></h1>
+        <h1><a href="/order">Orders</a></h1>
+        {% ifequal user.role 0 %}
+        <h1><a href="{% url 'author_home' %}">Authors</a></h1>
+        {% endifequal %}
+    
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

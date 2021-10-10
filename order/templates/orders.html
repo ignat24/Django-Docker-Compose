@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>We can see users that does not hand over books on time <a href="/order/bad_users/">Bad users</a></h4>
+<h1>Here we can see the list of all orders for any user</h1>
+{% for order in page_obj %}
+	<li>
+	<a href="/order/{{ order.id }}/">{{ order.user.first_name }} {{ order.user.last_name }}{{ order.book.name }}</a>
+        {{ order.plated_end_at|date:"D d M Y" }}
+	</li>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+
