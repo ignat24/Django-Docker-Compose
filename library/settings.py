@@ -82,9 +82,21 @@ WSGI_APPLICATION = 'library.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'django_1',
+    #     'USER' : 'DJANGOUSER',
+    #     'PASSWORD' : 'postgres',
+    #     'HOST' : '127.0.0.1',
+    #     'POST' : 5432,
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -130,7 +142,7 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/login'
 
 
-# try:
-#     from .local_settings import  *
-# except ImportError:
-#     pass
+try:
+    from .local_settings import  *
+except ImportError:
+    pass

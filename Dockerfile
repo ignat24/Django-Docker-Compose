@@ -9,4 +9,5 @@ RUN pip install -r /danil/django/test/requirements.txt
 
 COPY . /danil/django/test
 
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
