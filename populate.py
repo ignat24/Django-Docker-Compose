@@ -52,13 +52,13 @@ def populate():
     #     except Book.DoesNotExist:
     #         Book.create(name=y[1], description=y[2],
     #                                  count=y[3])
-    # for x in AUTHORS.itertuples():
-    #     try:
-    #         obj = Author.objects.get(name=x[1], surname=x[2],
-    #                                  patronymic=x[3])
-    #     except Author.DoesNotExist:
-    #         Author.create(name=x[1], surname=x[2],
-    #                                  patronymic=x[3])
+    for x in AUTHORS.itertuples():
+        try:
+            obj = Author.objects.get(name=x[1], surname=x[2],
+                                     patronymic=x[3])
+        except Author.DoesNotExist:
+            Author.create(name=x[1], surname=x[2],
+                                     patronymic=x[3])
 
     # for elem in AUTHORS.itertuples():
     #     obj = Author.objects.get(name=elem[1], surname=elem[2],
