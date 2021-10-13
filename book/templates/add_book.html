@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Add book in Library</h1>
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <input type="submit" class="btn btn-primary" value="Add book">
+</form>
+</div>
+
+{% endblock %}

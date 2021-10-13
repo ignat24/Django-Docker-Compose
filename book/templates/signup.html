@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Here we can register a new user</h1>
+<div class="form-group">
+<form action="/signup/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br>
+    <input type="submit" class="btn btn-primary" value="Sign Up">
+
+</form>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Order book {{book.name}}</h1>
+<h4>Select how many days you will plan use this book </h4>
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}  
+    <button>Order</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center>
+<h1>Orders</h1>
+
+</center>
+<h4>Didn't return the <a href="/order/bad_users/">book</a></h4>
+{% for order in page_obj %}
+<hr>
+	
+	<!-- <a href="{% url 'order' order.id %}">{{ order.user.first_name }} {{ order.user.last_name }}{{ order.book.name }}</a> -->
+    <br><h3><b>Name:</b>{{ order.user.first_name }} {{ order.user.last_name }}</h3>  
+    <br><h3><b>Book:</b> {{ order.book.name }}</h3>
+    <br><p>Return date: {{ order.plated_end_at|date:"D d M Y" }} </p>
+    <br><a type="button" class="btn btn-primary" href="#">Delete order</a>
+
+    <hr>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+

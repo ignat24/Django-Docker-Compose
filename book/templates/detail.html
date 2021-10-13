@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Details{% endblock %}
+{% block content %}
+<!-- <form action="/book/detail/" method="get">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Search">
+</form> -->
+<!-- <h1>Here we can see the detail info about book with id {{ book.id }}</h1> -->
+<h2><b>Title:</b> {{ book.name }}</h2>
+<h2><b>Short description:</b></h2><p> {{ book.description }}</p>
+<h2><b>Authors:</b> </h2>
+{% for author in book.authors.all %}
+<h5>{{ author.name }} {{ author.patronymic }}</h5>
+{% endfor %}
+{% ifequal user.role 1 %}
+<h2><b>Count:</b> {{book.count}}</h2>
+{% endifequal%}
+
+{% if user.is_authenticated %}
+<a type="button" class="btn btn-primary" href="/book/order/{{book.id}}">Order book</a>
+{% else %}
+<p>Welcome, guest. Yo need to <a href="/login">Log in</a> to order book</p>
+{% endif %}
+
+{% ifequal user.role 1 %}
+<a href="{% url 'update_book' book.pk %}" class="btn btn-outline-primary" >Update book</a>
+<a href="{% url 'delete_book' book.pk %}" class="btn btn-outline-primary" aria-current="page">Delete book</a>
+{% endifequal %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Yo can see all your orders, {{user.first_name}}</h4>
+<hr>
+{% for order in orders %}
+<br><h3><b>Book:</b> {{ order.book.name }}</h3>
+<br><p>Return date: {{ order.plated_end_at|date:"D d M Y" }} </p>
+<br><a type="button" class="btn btn-primary" href="#">Return</a>
+<hr>
+{% endfor %}
+{% endblock %}
+
