@@ -18,13 +18,14 @@
                 <li><a href="{% url 'author_home' %}" class="nav-link px-2 link-dark">Authors</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'add_book' %}" class="nav-link px-2 link-dark">Add Book</a></li>
-                {% endif %}
+                
                 {% ifequal user.role 1 %}
                 <li><a href="/order" class="nav-link px-2 link-dark">Orders</a></li>
                 {% else %}
                 <li><a href="/orders" class="nav-link px-2 link-dark">Orders</a></li>
 
                 {% endifequal %}
+                {% endif %}
             </ul>
         
               <div class="col-md-3 text-end">
