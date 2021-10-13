@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Author
+from book.models import Book
 from .forms import AuthorForm
 from django.urls import reverse_lazy
 
@@ -15,6 +16,14 @@ class AuthorsHomeView(ListView):
     context_object_name = 'authors'
     # queryset = Author.objects.all()
     template_name = 'main_authors.html'
+
+# def detail(request, id_author=None):
+
+# class AuthorsDetailView(ListView):
+#     model=Author
+#     context_object_name = 'authors'
+#     queryset = Author.objects.all()
+#     template_name = 'author_detail.html'
 
 class AddAuthorView(CreateView):
 

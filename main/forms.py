@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import fields
+from django.forms import widgets
 from authentication.models import CustomUser
 from django.contrib.auth import password_validation
 from django.utils.translation import gettext as _
@@ -16,8 +18,8 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(max_length=50,
                              widget=(forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'})))
     password1 = forms.CharField(label=_('Password'),
-                                widget=(forms.PasswordInput(attrs={'class': 'form-control'})),
-                                help_text=password_validation.password_validators_help_text_html())
+                                widget=(forms.PasswordInput(attrs={'class': 'form-control'})))
+                                # help_text=password_validation.password_validators_help_text_html())
     password2 = forms.CharField(label=_('Password Confirmation'),
                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
@@ -28,6 +30,14 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
+    # class Meta:
+    #     model = CustomUser
+    #     fields = ('email', 'password')
+
+    #     widgets = {
+    #         'email': forms.TextInput(attrs={'class':'form-control', 'placeholder':'email'}),
+    #         'password': forms.TextInput(attrs={'class':'form-control', 'placeholder':'password'}),
+    #     }
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 

@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+<center>
 <h1>Authors</h1>
-{% ifequal user.role 0 %}
+{% ifequal user.role 1 %}
 <a href="{% url 'author_add' %}" class="btn btn-outline-primary" aria-current="page">Add author</a>
  {% endifequal %}
+ </center>
+ <hr>
 {% for author in authors %}
+
 <h1>{{author.name}} {{author.surname}} {{author.patronymic}} </h1>
-{% ifequal user.role 0 %}
+<h3><b>ID:</b> {{author.id}}</h3>
+{% ifequal user.role 1 %}
 <a href="{% url 'author_update' author.pk %}" class="btn btn-outline-primary" >Edit author</a>
 <a href="{% url 'author_delete' author.pk %}" class="btn btn-outline-primary" aria-current="page">Delete author</a>
  {% endifequal %}
- 
+<hr>
 {% endfor %}
 
 

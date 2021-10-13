@@ -43,13 +43,13 @@ class SortFilterForm(forms.Form):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('name', 'description', 'count', 'authors')
+        fields = ('name', 'description', 'count')
 
         widgets={
             'name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Book name'}),
             'description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Small description'}),
             'count': forms.TextInput(attrs={'class':'form-control'}),
-            'authors': forms.Select(attrs={'class':'form-control'})
+            # 'authors': forms.Select(attrs={'class':'form-control'})
         }
 
 

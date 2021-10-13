@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Here you can log in</h1>
+<center>
+<h1>Sign in</h1>
 <form action="/login/" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Login">
+    <br>
+    <br>
+    <a type="button" class="btn btn-outline-primary me-2" href="/signup">Sign Up</a>
+    <input type="submit" class="btn btn-primary" value="Login">
 </form>
-
+</center>
 {% endblock %}
 

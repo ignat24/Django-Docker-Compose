@@ -1,27 +1,52 @@
 {% extends 'base.html' %}
+{% block title %}
+Books
+{% endblock %}
 {% block content %}
-<h4>We can see book's written by some author <a href="/book/author/">Author</a></h4>
+<!-- <h4>We can see book's written by some author <a href="/book/author/">Author</a></h4>
 <h4>Or given to specific user <a href="/book/user/">User</a></h4>
 <h4>And find book by id <a href="/book/detail/">Detail</a></h4>
 <h4>Or find unordered books <a href="/book/unordered/">Unordered</a></h4>
-{% ifequal user.role 0 %}
+{% if user.is_authenticated %}
 <h4>You can add <a href="{% url 'add_book' %}">New book</a></h4>
-{% endifequal %}
+{% endif %} -->
 
+<center>
+<h1>Books</h1>
 
-<h1>Here we can see the list of all books for any user</h1>
-
+<br>
 <form action="/book/" method="get">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Sort&Filter">
 </form>
-
+</center>
+{% if page_obj %}
+<div class="row align-items-md-stretch">
+    
 {% for book in page_obj %}
-	<li>
-	<a href="/book/detail/{{ book.id }}">{{ book.name }}</a>
-	{{ book.description }} Count = {{ book.count }}</li>
+
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light border rounded-3">
+        <h2>{{ book.name }}</h2>
+        <p>{{ book.description|truncatechars:200 }}</p>
+        <a class="btn btn-outline-secondary" href="/book/detail/{{ book.id }}" type="button">More...</a>
+      </div>
+    </div>
+  
+	<!-- <li>
+        <a href="/book/detail/{{ book.id }}">{{ book.name }}</a>
+        {{ book.description|truncatechars:200 }} Count = {{ book.count }}</li> -->
 {% endfor %}
+</div>
+{% else %}
+<center>
+    <h1>Sorry! We don't have this books</h1>
+</center>
+{% endif %}
+
+
+
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
