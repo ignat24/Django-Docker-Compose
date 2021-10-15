@@ -27,15 +27,15 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
-    volumes:
-      - static_volume:/home/app/web/static
+      - 80:80
+    # volumes:
+    #   - static_volume:/home/app/web/static
     depends_on:
       - web
 
 volumes:
   postgres_data:
-  static_volume:
+  # static_volume:
       
 
 
