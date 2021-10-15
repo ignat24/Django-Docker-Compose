@@ -156,8 +156,8 @@ USE_TZ = True
 # 'django.template.loaders.app_directories.Loader',)
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = '/staticfiles /'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiels")
 LOGIN_URL = '/login'
 
 
