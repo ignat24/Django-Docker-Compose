@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,16 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q!o9ybrsa@o8a)fj2&d7qrbtnbvkej5mud(!k)*9vspug62$xh'
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
+# print("Secret key", SECRET_KEY)
+# SECRET_KEY = 'asdffasdf'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
+# DEBUG = False
 
-ALLOWED_HOSTS = [
-   '0.0.0.0'
-]
-
-
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
+# ALLOWED_HOSTS = [
+#      '0.0.0.0'
+# ]
 # Application definition
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
@@ -80,25 +82,37 @@ WSGI_APPLICATION = 'library.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+# print("heelllllllp",  os.environ.get('USER'))
 DATABASES = {
+    # Рабочая на локалке
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'django_1',
-    #     'USER' : 'DJANGOUSER',
-    #     'PASSWORD' : 'postgres',
-    #     'HOST' : '127.0.0.1',
-    #     'POST' : 5432,
+    #     'NAME': 'django_jenkins',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
     # }
+    # For docker-compose
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_jenkins',
-        'USER': 'admin',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
+        'PORT': os.environ.get('PORT'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'django_jenkins',
+    #     'USER': 'admin',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'db',
+    #     'PORT': 5432,
+    # }
 }
+
+
 
 
 # Password validation
@@ -138,7 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_URL = '/login'
 
 
