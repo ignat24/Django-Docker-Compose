@@ -6,3 +6,7 @@ db.sqlite3
 .env.prod
 .env.dev
 .env.prod.db
+.docker-compose.nginx.yml
+.Dockerfile
+.entrypoint.sh
+.docker-compose.yml
