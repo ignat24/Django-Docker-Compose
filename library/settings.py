@@ -28,10 +28,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
 # DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
-# ALLOWED_HOSTS = [
-#      '0.0.0.0'
-# ]
+# ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
+ALLOWED_HOSTS = ['*'
+    #  '0.0.0.0'
+]
 # Application definition
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
