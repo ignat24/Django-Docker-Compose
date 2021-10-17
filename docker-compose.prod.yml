@@ -11,9 +11,9 @@ services:
     env_file:
       - ./.env.prod
     depends_on:
-      - db
-  db:
-    container_name: db
+      - dj_db
+  dj_db:
+    container_name: dj_db
     image: postgres:10
     restart: always
     volumes:
