@@ -1,3 +1,3 @@
 ## Django
-
-`python manage.py runserver`
+Django app with docker compose for using in Jenkins Jobs with EC2
+python manage.py runserver
