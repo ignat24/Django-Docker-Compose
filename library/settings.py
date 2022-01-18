@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 # print("Secret key", SECRET_KEY)
-# SECRET_KEY = 'asdffasdf'
+SECRET_KEY = 'asdffasdf'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
-# DEBUG = False
+# DEBUG = bool(int(os.environ.get('DEBUG', default=1)))
+DEBUG = False
 
 # ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(" ")
 ALLOWED_HOSTS = ['*'
